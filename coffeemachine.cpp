@@ -1,8 +1,6 @@
 #include "coffeemachine.h"
 #include "ui_coffeemachine.h"
 
-
-
 const QString CoffeeMachine:: BUY_COMMAND_HEADER = "BUY";
 const QString CoffeeMachine:: CHECK_COMMAND_HEADER = "CHECK";
 const QString CoffeeMachine:: BUY_SUCCESS_COMMAND = "SUCCESS";
@@ -16,7 +14,6 @@ const QString CoffeeMachine:: DATABASE_DRINK_NAME_FIELD = "\"drink\"";
 const QString CoffeeMachine:: DATABASE_AMOUNT_DRINK_FIELD = "\"number\"";
 const QString CoffeeMachine:: DATABASE_SYRUPS_TABLE = "\"syrupsTable\"";
 const QString CoffeeMachine:: DATABASE_ORDERS_TABLE = "\"ordersTable\"";
-
 
 CoffeeMachine::CoffeeMachine(QWidget *parent)
     : QMainWindow(parent)
@@ -118,11 +115,14 @@ bool CoffeeMachine:: haveInStock() {
             command = "UPDATE " + DATABASE_DRINKS_TABLE +
                     " SET " + DATABASE_AMOUNT_DRINK_FIELD + " = :number "+
                     "WHERE " + DATABASE_DRINK_NAME_FIELD + " = :drink;";
-            qDebug() << query->prepare(command);
+            query->prepare(command);
             query->bindValue(":number", QString::number(number - 1));
             query->bindValue(":drink", currentOrder.getDrink());
             query->exec();
+            updateOrdersLogs(true);
             return true;
+        } else {
+            updateOrdersLogs(false);
         }
         return false;
     } else {
@@ -134,8 +134,18 @@ bool CoffeeMachine:: haveInStock() {
 void CoffeeMachine:: updateOrdersLogs(bool isCorrect) {
     if(dataBase.open()) {
         QSqlQuery* query = new QSqlQuery(dataBase);
-        QString command = "INSERT INTO " + DATABASE_ORDERS_TABLE + "";
+        QString command = "INSERT INTO " + DATABASE_ORDERS_TABLE +
+                " (drink, syrup, sugar, milk, cinnamon, price, correct, date) "
+                "VALUES (:drink, :syrup, :sugar, :milk, :cinnamon, :price, :correct, :date);";
         query->prepare(command);
+        query->bindValue(":drink", currentOrder.getDrink());
+        query->bindValue(":syrup", currentOrder.getSyrup());
+        query->bindValue(":sugar", currentOrder.isNeededSugar());
+        query->bindValue(":milk", currentOrder.isNeededMilk());
+        query->bindValue(":cinnamon", currentOrder.isNeededCinnamon());
+        query->bindValue(":price", calculatePriceOrder());
+        query->bindValue(":correct", isCorrect);
+        query->bindValue(":date", QDateTime::currentDateTime());
         query->exec();
     }
 }
