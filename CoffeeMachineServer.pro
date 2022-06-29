@@ -12,16 +12,19 @@ SOURCES += \
     main.cpp \
     coffeemachine.cpp \
     newdrinkwidget.cpp \
+    newsyrupwidget.cpp \
     order.cpp
 
 HEADERS += \
     coffeemachine.h \
     newdrinkwidget.h \
+    newsyrupwidget.h \
     order.h
 
 FORMS += \
     coffeemachine.ui \
-    newdrinkwidget.ui
+    newdrinkwidget.ui \
+    newsyrupwidget.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
