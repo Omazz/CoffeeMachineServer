@@ -40,14 +40,12 @@ void CoffeeMachine:: initPrices()
         QString command = "SELECT * FROM " + DATABASE_DRINKS_TABLE + ";";
         query->prepare(command);
         query->exec();
-        qDebug() << query->size();
         while(query->next()) {
             pricesOfDrinks.insert(query->value(1).toString(), query->value(2).toInt());
         }
         command = "SELECT * FROM " + DATABASE_SYRUPS_TABLE + ";";
         query->prepare(command);
         query->exec();
-        qDebug() << query->size();
         while(query->next()) {
             pricesOfSyrups.insert(query->value(1).toString(), query->value(2).toInt());
         }
