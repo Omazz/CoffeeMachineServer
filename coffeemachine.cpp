@@ -3,18 +3,19 @@
 
 
 
-const QString CoffeeMachine:: BUY_COMMAND_HEADER = (QString) "BUY";
-const QString CoffeeMachine:: CHECK_COMMAND_HEADER = (QString) "CHECK";
-const QString CoffeeMachine:: BUY_SUCCESS_COMMAND = (QString) "SUCCESS";
-const QString CoffeeMachine:: BUY_FAILURE_COMMAND = (QString) "FAILURE";
-const QString CoffeeMachine:: DATABASE_DRIVER = (QString) "QPSQL";
-const QString CoffeeMachine:: DATABASE_NAME = (QString) "coffeeMachineDataBase";
-const QString CoffeeMachine:: DATABASE_USERNAME = (QString) "postgres";
-const QString CoffeeMachine:: DATABASE_PASSWORD = (QString) "root";
+const QString CoffeeMachine:: BUY_COMMAND_HEADER = "BUY";
+const QString CoffeeMachine:: CHECK_COMMAND_HEADER = "CHECK";
+const QString CoffeeMachine:: BUY_SUCCESS_COMMAND = "SUCCESS";
+const QString CoffeeMachine:: BUY_FAILURE_COMMAND = "FAILURE";
+const QString CoffeeMachine:: DATABASE_DRIVER = "QPSQL";
+const QString CoffeeMachine:: DATABASE_NAME = "coffeeMachineDataBase";
+const QString CoffeeMachine:: DATABASE_USERNAME = "postgres";
+const QString CoffeeMachine:: DATABASE_PASSWORD = "root";
 const QString CoffeeMachine:: DATABASE_DRINKS_TABLE = "\"drinksTable\"";
 const QString CoffeeMachine:: DATABASE_DRINK_NAME_FIELD = "\"drink\"";
 const QString CoffeeMachine:: DATABASE_AMOUNT_DRINK_FIELD = "\"number\"";
 const QString CoffeeMachine:: DATABASE_SYRUPS_TABLE = "\"syrupsTable\"";
+const QString CoffeeMachine:: DATABASE_ORDERS_TABLE = "\"ordersTable\"";
 
 
 CoffeeMachine::CoffeeMachine(QWidget *parent)
@@ -97,6 +98,7 @@ quint16 CoffeeMachine:: calculatePriceOrder() {
     return priceDrink + priceSugar + priceMilk + priceCinnamon + priceSyrup;
 }
 
+
 void CoffeeMachine:: writeDatagram(QString data)
 {
     socket->writeDatagram(data.toUtf8(), TO_SEND_IP, TO_SEND_PORT);
@@ -127,6 +129,15 @@ bool CoffeeMachine:: haveInStock() {
         qDebug() << "data base is not openned";
     }
     return false;
+}
+
+void CoffeeMachine:: updateOrdersLogs(bool isCorrect) {
+    if(dataBase.open()) {
+        QSqlQuery* query = new QSqlQuery(dataBase);
+        QString command = "INSERT INTO " + DATABASE_ORDERS_TABLE + "";
+        query->prepare(command);
+        query->exec();
+    }
 }
 
 CoffeeMachine::~CoffeeMachine()

@@ -26,6 +26,7 @@ private:
     quint16 calculatePriceOrder();
     void writeDatagram(QString data);
     bool haveInStock();
+    void updateOrdersLogs(bool isCorrect);
 
     Ui::CoffeeMachine *ui;
     Order currentOrder;
@@ -36,15 +37,19 @@ private:
     const static int priceOfSugar = 10;
     const static int priceOfMilk = 30;
     const static int priceOfCinnamon = 20;
+
     const static QString DATABASE_DRIVER;
     const static QString DATABASE_NAME;
     const static QString DATABASE_USERNAME;
     const static QString DATABASE_PASSWORD;
+    const static quint16 DATABASE_PORT = 5433;
+
     const static QString DATABASE_DRINKS_TABLE;
+    const static QString DATABASE_SYRUPS_TABLE;
+    const static QString DATABASE_ORDERS_TABLE;
+
     const static QString DATABASE_DRINK_NAME_FIELD;
     const static QString DATABASE_AMOUNT_DRINK_FIELD;
-    const static QString DATABASE_SYRUPS_TABLE;
-    const static quint16 DATABASE_PORT = 5433;
 
     QUdpSocket* socket;
     const static QString BUY_COMMAND_HEADER;
