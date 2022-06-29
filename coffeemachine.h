@@ -22,6 +22,11 @@ public:
     ~CoffeeMachine();
 public slots:
     void readDatagram();
+private slots:
+    void on_addNewDrinkButton_clicked();
+
+    void on_addNewSyrupButton_clicked();
+
 private:
     void initPrices();
     quint16 calculatePriceOrder();

@@ -11,14 +11,17 @@ CONFIG += c++17
 SOURCES += \
     main.cpp \
     coffeemachine.cpp \
+    newdrinkwidget.cpp \
     order.cpp
 
 HEADERS += \
     coffeemachine.h \
+    newdrinkwidget.h \
     order.h
 
 FORMS += \
-    coffeemachine.ui
+    coffeemachine.ui \
+    newdrinkwidget.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

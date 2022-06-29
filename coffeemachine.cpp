@@ -159,12 +159,27 @@ void CoffeeMachine::on_addNewDrinkButton_clicked()
     if(dataBase.open()) {
         QSqlQuery* query = new QSqlQuery(dataBase);
         QString command = "INSERT INTO " + DATABASE_DRINKS_TABLE +
-                " (drink, price number) "
+                " (drink, price, number) "
                 "VALUES (:drink, :price, :number);";
         query->prepare(command);
         query->bindValue(":drink", "123");
         query->bindValue(":price", "123");
         query->bindValue(":number", "123");
+        query->exec();
+    }
+}
+
+
+void CoffeeMachine::on_addNewSyrupButton_clicked()
+{
+    if(dataBase.open()) {
+        QSqlQuery* query = new QSqlQuery(dataBase);
+        QString command = "INSERT INTO " + DATABASE_SYRUPS_TABLE +
+                " (syrup, price) "
+                "VALUES (:syrup, :price);";
+        query->prepare(command);
+        query->bindValue(":drink", "123");
+        query->bindValue(":price", "123");
         query->exec();
     }
 }
