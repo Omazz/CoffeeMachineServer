@@ -15,6 +15,9 @@ public:
     explicit newDrinkWidget(QWidget *parent = nullptr);
     ~newDrinkWidget();
 
+private slots:
+    void on_sendToDatabaseButton_clicked();
+
 private:
     Ui::newDrinkWidget *ui;
 };
