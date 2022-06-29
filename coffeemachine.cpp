@@ -1,6 +1,6 @@
 #include "coffeemachine.h"
 #include "ui_coffeemachine.h"
-#include <QMessageBox>
+
 
 
 const QString CoffeeMachine:: BUY_COMMAND_HEADER = (QString) "BUY";
