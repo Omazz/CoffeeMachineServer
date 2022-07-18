@@ -31,6 +31,11 @@ CoffeeMachine::CoffeeMachine(QWidget *parent)
     dataBase.setPort(DATABASE_PORT);
 
     initPrices();
+
+    newDrinkWidget = new NewDrinkWidget(this);
+    newSyrupWidget = new NewSyrupWidget(this);
+    connect(newDrinkWidget, &NewDrinkWidget::newDrinkSignal, this, &CoffeeMachine::addNewDrink);
+    connect(newSyrupWidget, &NewSyrupWidget::newSyrupSignal, this, &CoffeeMachine::addNewSyrup);
 }
 
 void CoffeeMachine:: initPrices()
@@ -153,34 +158,42 @@ CoffeeMachine::~CoffeeMachine()
     delete ui;
 }
 
-
-void CoffeeMachine::on_addNewDrinkButton_clicked()
-{
+void CoffeeMachine::addNewDrink(QString drink, QString price, QString number) {
     if(dataBase.open()) {
         QSqlQuery* query = new QSqlQuery(dataBase);
         QString command = "INSERT INTO " + DATABASE_DRINKS_TABLE +
                 " (drink, price, number) "
                 "VALUES (:drink, :price, :number);";
         query->prepare(command);
-        query->bindValue(":drink", "123");
-        query->bindValue(":price", "123");
-        query->bindValue(":number", "123");
-        query->exec();
+        query->bindValue(":drink", drink);
+        query->bindValue(":price", price.toUInt());
+        query->bindValue(":number", number.toUInt());
+        qDebug() << query->exec();
     }
+}
+void CoffeeMachine::addNewSyrup(QString syrup, QString price) {
+    if(dataBase.open()) {
+        QSqlQuery* query = new QSqlQuery(dataBase);
+        QString command = "INSERT INTO" + DATABASE_SYRUPS_TABLE +
+                " (syrup, price) "
+                "VALUES (:syrup, :price);";
+        query->prepare(command);
+        query->bindValue(":syrup", syrup);
+        query->bindValue(":price", price.toUInt());
+        qDebug() << query->exec();
+    }
+}
+
+void CoffeeMachine::on_addNewDrinkButton_clicked()
+{
+    newDrinkWidget->setModal(true);
+    newDrinkWidget->show();
 }
 
 
 void CoffeeMachine::on_addNewSyrupButton_clicked()
 {
-    if(dataBase.open()) {
-        QSqlQuery* query = new QSqlQuery(dataBase);
-        QString command = "INSERT INTO " + DATABASE_SYRUPS_TABLE +
-                " (syrup, price) "
-                "VALUES (:syrup, :price);";
-        query->prepare(command);
-        query->bindValue(":drink", "123");
-        query->bindValue(":price", "123");
-        query->exec();
-    }
+    newSyrupWidget->setModal(true);
+    newSyrupWidget->show();
 }
 

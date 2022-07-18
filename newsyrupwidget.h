@@ -4,19 +4,25 @@
 #include <QDialog>
 
 namespace Ui {
-class newSyrupWidget;
+class NewSyrupWidget;
 }
 
-class newSyrupWidget : public QDialog
+class NewSyrupWidget : public QDialog
 {
     Q_OBJECT
 
 public:
-    explicit newSyrupWidget(QWidget *parent = nullptr);
-    ~newSyrupWidget();
+    explicit NewSyrupWidget(QWidget *parent = nullptr);
+    ~NewSyrupWidget();
+
+signals:
+    void newSyrupSignal(QString syrup, QString price);
+
+private slots:
+    void on_sendToDatabaseButton_clicked();
 
 private:
-    Ui::newSyrupWidget *ui;
+    Ui::NewSyrupWidget *ui;
 };
 
 #endif // NEWSYRUPWIDGET_H
