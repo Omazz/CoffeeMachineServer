@@ -9,6 +9,10 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    changepricedrinkwidget.cpp \
+    changepricesyrupwidget.cpp \
+    deletesomedrinkwidget.cpp \
+    deletesomesyrupwidget.cpp \
     main.cpp \
     coffeemachine.cpp \
     newdrinkwidget.cpp \
@@ -16,13 +20,21 @@ SOURCES += \
     order.cpp
 
 HEADERS += \
+    changepricedrinkwidget.h \
+    changepricesyrupwidget.h \
     coffeemachine.h \
+    deletesomedrinkwidget.h \
+    deletesomesyrupwidget.h \
     newdrinkwidget.h \
     newsyrupwidget.h \
     order.h
 
 FORMS += \
+    changepricedrinkwidget.ui \
+    changepricesyrupwidget.ui \
     coffeemachine.ui \
+    deletesomedrinkwidget.ui \
+    deletesomesyrupwidget.ui \
     newdrinkwidget.ui \
     newsyrupwidget.ui
 

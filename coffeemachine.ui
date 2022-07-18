@@ -9,8 +9,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>492</width>
-    <height>270</height>
+    <width>489</width>
+    <height>260</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -102,6 +102,32 @@ color: rgb(255, 255, 255);</string>
          </item>
         </layout>
        </item>
+       <item>
+        <layout class="QVBoxLayout" name="verticalLayout_4">
+         <item>
+          <widget class="QPushButton" name="deleteSomeDrinkButton">
+           <property name="styleSheet">
+            <string notr="true">background-color: rgb(170, 0, 0);
+color: rgb(255, 255, 255);</string>
+           </property>
+           <property name="text">
+            <string>Delete some drink</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="deleteSomeSyrupButton">
+           <property name="styleSheet">
+            <string notr="true">background-color: rgb(170, 0, 0);
+color: rgb(255, 255, 255);</string>
+           </property>
+           <property name="text">
+            <string>Delete some syrup</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
       </layout>
      </item>
     </layout>
@@ -112,7 +138,7 @@ color: rgb(255, 255, 255);</string>
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>492</width>
+     <width>489</width>
      <height>25</height>
     </rect>
    </property>

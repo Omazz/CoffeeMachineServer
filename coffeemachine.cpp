@@ -11,7 +11,9 @@ const QString CoffeeMachine:: DATABASE_USERNAME = "postgres";
 const QString CoffeeMachine:: DATABASE_PASSWORD = "root";
 const QString CoffeeMachine:: DATABASE_DRINKS_TABLE = "\"drinksTable\"";
 const QString CoffeeMachine:: DATABASE_DRINK_NAME_FIELD = "\"drink\"";
+const QString CoffeeMachine:: DATABASE_SYRUP_NAME_FIELD = "\"syrup\"";
 const QString CoffeeMachine:: DATABASE_AMOUNT_DRINK_FIELD = "\"number\"";
+const QString CoffeeMachine:: DATABASE_PRICE_FIELD = "\"price\"";
 const QString CoffeeMachine:: DATABASE_SYRUPS_TABLE = "\"syrupsTable\"";
 const QString CoffeeMachine:: DATABASE_ORDERS_TABLE = "\"ordersTable\"";
 
@@ -34,8 +36,13 @@ CoffeeMachine::CoffeeMachine(QWidget *parent)
 
     newDrinkWidget = new NewDrinkWidget(this);
     newSyrupWidget = new NewSyrupWidget(this);
+    changePriceDrinkWidget = new ChangePriceDrinkWidget(this);
+    changePriceSyrupWidget = new ChangePriceSyrupWidget(this);
+
     connect(newDrinkWidget, &NewDrinkWidget::newDrinkSignal, this, &CoffeeMachine::addNewDrink);
     connect(newSyrupWidget, &NewSyrupWidget::newSyrupSignal, this, &CoffeeMachine::addNewSyrup);
+    connect(changePriceDrinkWidget, &ChangePriceDrinkWidget::changePriceDrinkSignal, this, &CoffeeMachine::changePriceDrink);
+    connect(changePriceSyrupWidget, &ChangePriceSyrupWidget::changePriceSyrupSignal, this, &CoffeeMachine::changePriceSyrup);
 }
 
 void CoffeeMachine:: initPrices()
@@ -168,7 +175,7 @@ void CoffeeMachine::addNewDrink(QString drink, QString price, QString number) {
         query->bindValue(":drink", drink);
         query->bindValue(":price", price.toUInt());
         query->bindValue(":number", number.toUInt());
-        qDebug() << query->exec();
+        query->exec();
     }
 }
 void CoffeeMachine::addNewSyrup(QString syrup, QString price) {
@@ -180,7 +187,33 @@ void CoffeeMachine::addNewSyrup(QString syrup, QString price) {
         query->prepare(command);
         query->bindValue(":syrup", syrup);
         query->bindValue(":price", price.toUInt());
-        qDebug() << query->exec();
+        query->exec();
+    }
+}
+
+void CoffeeMachine::changePriceDrink(QString drink, QString price) {
+    if(dataBase.open()) {
+        QSqlQuery* query = new QSqlQuery(dataBase);
+        QString command = "UPDATE " + DATABASE_DRINKS_TABLE +
+                " SET " + DATABASE_PRICE_FIELD + " = :price" +
+                " WHERE " + DATABASE_DRINK_NAME_FIELD + " = :drink";
+        query->prepare(command);
+        query->bindValue(":price", price.toUInt());
+        query->bindValue(":drink", drink);
+        query->exec();
+    }
+}
+
+void CoffeeMachine::changePriceSyrup(QString syrup, QString price) {
+    if(dataBase.open()) {
+        QSqlQuery* query = new QSqlQuery(dataBase);
+        QString command = "UPDATE " + DATABASE_SYRUPS_TABLE +
+                " SET " + DATABASE_PRICE_FIELD + " = :price" +
+                " WHERE " + DATABASE_SYRUP_NAME_FIELD + " = :syrup";
+        query->prepare(command);
+        query->bindValue(":price", price.toUInt());
+        query->bindValue(":syrup", syrup);
+        query->exec();
     }
 }
 
@@ -195,5 +228,31 @@ void CoffeeMachine::on_addNewSyrupButton_clicked()
 {
     newSyrupWidget->setModal(true);
     newSyrupWidget->show();
+}
+
+
+void CoffeeMachine::on_changePriceDrinksButton_clicked()
+{
+    changePriceDrinkWidget->setModal(true);
+    changePriceDrinkWidget->show();
+}
+
+
+void CoffeeMachine::on_changePriceSyrupsButton_clicked()
+{
+    changePriceSyrupWidget->setModal(true);
+    changePriceSyrupWidget->show();
+}
+
+
+void CoffeeMachine::on_deleteSomeDrinkButton_clicked()
+{
+
+}
+
+
+void CoffeeMachine::on_deleteSomeSyrupButton_clicked()
+{
+
 }
 

@@ -4,6 +4,9 @@
 #include "order.h"
 #include "newdrinkwidget.h"
 #include "newsyrupwidget.h"
+#include "changepricedrinkwidget.h"
+#include "changepricesyrupwidget.h"
+
 #include <QMainWindow>
 #include <QUdpSocket>
 #include <QSqlDatabase>
@@ -36,7 +39,9 @@ public:
     const static QString DATABASE_ORDERS_TABLE;
 
     const static QString DATABASE_DRINK_NAME_FIELD;
+    const static QString DATABASE_SYRUP_NAME_FIELD;
     const static QString DATABASE_AMOUNT_DRINK_FIELD;
+    const static QString DATABASE_PRICE_FIELD;
 
     const static QString BUY_COMMAND_HEADER;
     const static QString CHECK_COMMAND_HEADER;
@@ -56,10 +61,20 @@ public slots:
     void readDatagram();
 
 private slots:
-    void on_addNewDrinkButton_clicked();
-    void on_addNewSyrupButton_clicked();
     void addNewDrink(QString drink, QString price, QString number);
     void addNewSyrup(QString syrup, QString price);
+    void changePriceDrink(QString drink, QString price);
+    void changePriceSyrup(QString syrup, QString price);
+
+    void on_addNewDrinkButton_clicked();
+    void on_addNewSyrupButton_clicked();
+    void on_changePriceDrinksButton_clicked();
+    void on_changePriceSyrupsButton_clicked();
+
+
+    void on_deleteSomeDrinkButton_clicked();
+
+    void on_deleteSomeSyrupButton_clicked();
 
 private:
     void initPrices();
@@ -77,6 +92,8 @@ private:
 
     NewDrinkWidget* newDrinkWidget;
     NewSyrupWidget* newSyrupWidget;
+    ChangePriceDrinkWidget* changePriceDrinkWidget;
+    ChangePriceSyrupWidget* changePriceSyrupWidget;
 
     QUdpSocket* socket;
 };
