@@ -12,3 +12,12 @@ DeleteSomeDrinkWidget::~DeleteSomeDrinkWidget()
 {
     delete ui;
 }
+
+void DeleteSomeDrinkWidget::on_pushButton_clicked()
+{
+    QString drink = ui->drinkLine->text();
+    emit deleteSomeDrinkSignal(drink);
+    this->close();
+    ui->drinkLine->clear();
+}
+

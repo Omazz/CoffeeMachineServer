@@ -9,14 +9,14 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-    changepricedrinkwidget.cpp \
-    changepricesyrupwidget.cpp \
-    deletesomedrinkwidget.cpp \
-    deletesomesyrupwidget.cpp \
+    buttonsWidgetsCpp/addWidgetsCpp/newdrinkwidget.cpp \
+    buttonsWidgetsCpp/addWidgetsCpp/newsyrupwidget.cpp \
+    buttonsWidgetsCpp/changeWidgetsCpp/changepricedrinkwidget.cpp \
+    buttonsWidgetsCpp/changeWidgetsCpp/changepricesyrupwidget.cpp \
+    buttonsWidgetsCpp/deleteWidgetsCpp/deletesomedrinkwidget.cpp \
+    buttonsWidgetsCpp/deleteWidgetsCpp/deletesomesyrupwidget.cpp \
     main.cpp \
     coffeemachine.cpp \
-    newdrinkwidget.cpp \
-    newsyrupwidget.cpp \
     order.cpp
 
 HEADERS += \

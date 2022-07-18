@@ -38,11 +38,15 @@ CoffeeMachine::CoffeeMachine(QWidget *parent)
     newSyrupWidget = new NewSyrupWidget(this);
     changePriceDrinkWidget = new ChangePriceDrinkWidget(this);
     changePriceSyrupWidget = new ChangePriceSyrupWidget(this);
+    deleteSomeDrinkWidget = new DeleteSomeDrinkWidget(this);
+    deleteSomeSyrupWidget = new DeleteSomeSyrupWidget(this);
 
     connect(newDrinkWidget, &NewDrinkWidget::newDrinkSignal, this, &CoffeeMachine::addNewDrink);
     connect(newSyrupWidget, &NewSyrupWidget::newSyrupSignal, this, &CoffeeMachine::addNewSyrup);
     connect(changePriceDrinkWidget, &ChangePriceDrinkWidget::changePriceDrinkSignal, this, &CoffeeMachine::changePriceDrink);
     connect(changePriceSyrupWidget, &ChangePriceSyrupWidget::changePriceSyrupSignal, this, &CoffeeMachine::changePriceSyrup);
+    connect(deleteSomeDrinkWidget, &DeleteSomeDrinkWidget::deleteSomeDrinkSignal, this, &CoffeeMachine::deleteSomeDrink);
+    connect(deleteSomeSyrupWidget, &DeleteSomeSyrupWidget::deleteSomeSyrupSignal, this, &CoffeeMachine::deleteSomeSyrup);
 }
 
 void CoffeeMachine:: initPrices()
@@ -217,6 +221,28 @@ void CoffeeMachine::changePriceSyrup(QString syrup, QString price) {
     }
 }
 
+void CoffeeMachine::deleteSomeDrink(QString drink) {
+    if(dataBase.open()) {
+        QSqlQuery* query = new QSqlQuery(dataBase);
+        QString command = "DELETE FROM " + DATABASE_DRINKS_TABLE +
+                " WHERE " + DATABASE_DRINK_NAME_FIELD + " = :drink";
+        query->prepare(command);
+        query->bindValue(":drink", drink);
+        query->exec();
+    }
+}
+
+void CoffeeMachine::deleteSomeSyrup(QString syrup) {
+    if(dataBase.open()) {
+        QSqlQuery* query = new QSqlQuery(dataBase);
+        QString command = "DELETE FROM " + DATABASE_SYRUPS_TABLE +
+                " WHERE " + DATABASE_SYRUP_NAME_FIELD + " = :syrup";
+        query->prepare(command);
+        query->bindValue(":syrup", syrup);
+        query->exec();
+    }
+}
+
 void CoffeeMachine::on_addNewDrinkButton_clicked()
 {
     newDrinkWidget->setModal(true);
@@ -247,12 +273,14 @@ void CoffeeMachine::on_changePriceSyrupsButton_clicked()
 
 void CoffeeMachine::on_deleteSomeDrinkButton_clicked()
 {
-
+    deleteSomeDrinkWidget->setModal(true);
+    deleteSomeDrinkWidget->show();
 }
 
 
 void CoffeeMachine::on_deleteSomeSyrupButton_clicked()
 {
-
+    deleteSomeSyrupWidget->setModal(true);
+    deleteSomeSyrupWidget->show();
 }
 

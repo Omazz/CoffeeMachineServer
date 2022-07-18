@@ -15,6 +15,11 @@ public:
     explicit DeleteSomeSyrupWidget(QWidget *parent = nullptr);
     ~DeleteSomeSyrupWidget();
 
+signals:
+    void deleteSomeSyrupSignal(QString syrup);
+
+private slots:
+    void on_pushButton_clicked();
 private:
     Ui::DeleteSomeSyrupWidget *ui;
 };

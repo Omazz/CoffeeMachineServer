@@ -6,6 +6,8 @@
 #include "newsyrupwidget.h"
 #include "changepricedrinkwidget.h"
 #include "changepricesyrupwidget.h"
+#include "deletesomedrinkwidget.h"
+#include "deletesomesyrupwidget.h"
 
 #include <QMainWindow>
 #include <QUdpSocket>
@@ -13,7 +15,6 @@
 #include <QSqlQuery>
 #include <QSqlError>
 #include <QDateTime>
-
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class CoffeeMachine; }
@@ -65,15 +66,14 @@ private slots:
     void addNewSyrup(QString syrup, QString price);
     void changePriceDrink(QString drink, QString price);
     void changePriceSyrup(QString syrup, QString price);
+    void deleteSomeDrink(QString drink);
+    void deleteSomeSyrup(QString syrup);
 
     void on_addNewDrinkButton_clicked();
     void on_addNewSyrupButton_clicked();
     void on_changePriceDrinksButton_clicked();
     void on_changePriceSyrupsButton_clicked();
-
-
     void on_deleteSomeDrinkButton_clicked();
-
     void on_deleteSomeSyrupButton_clicked();
 
 private:
@@ -94,6 +94,8 @@ private:
     NewSyrupWidget* newSyrupWidget;
     ChangePriceDrinkWidget* changePriceDrinkWidget;
     ChangePriceSyrupWidget* changePriceSyrupWidget;
+    DeleteSomeDrinkWidget* deleteSomeDrinkWidget;
+    DeleteSomeSyrupWidget* deleteSomeSyrupWidget;
 
     QUdpSocket* socket;
 };
