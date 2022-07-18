@@ -20,23 +20,23 @@ SOURCES += \
     order.cpp
 
 HEADERS += \
-    changepricedrinkwidget.h \
-    changepricesyrupwidget.h \
+    buttonsWidgetsHeader/addWidgetsHeader/newdrinkwidget.h \
+    buttonsWidgetsHeader/addWidgetsHeader/newsyrupwidget.h \
+    buttonsWidgetsHeader/changeWidgetsHeader/changepricedrinkwidget.h \
+    buttonsWidgetsHeader/changeWidgetsHeader/changepricesyrupwidget.h \
+    buttonsWidgetsHeader/deleteWidgetsHeader/deletesomedrinkwidget.h \
+    buttonsWidgetsHeader/deleteWidgetsHeader/deletesomesyrupwidget.h \
     coffeemachine.h \
-    deletesomedrinkwidget.h \
-    deletesomesyrupwidget.h \
-    newdrinkwidget.h \
-    newsyrupwidget.h \
     order.h
 
 FORMS += \
-    changepricedrinkwidget.ui \
-    changepricesyrupwidget.ui \
-    coffeemachine.ui \
-    deletesomedrinkwidget.ui \
-    deletesomesyrupwidget.ui \
-    newdrinkwidget.ui \
-    newsyrupwidget.ui
+    buttonsWidgetsUi/addWidgetsUi/newdrinkwidget.ui \
+    buttonsWidgetsUi/addWidgetsUi/newsyrupwidget.ui \
+    buttonsWidgetsUi/changeWidgetsUi/changepricedrinkwidget.ui \
+    buttonsWidgetsUi/changeWidgetsUi/changepricesyrupwidget.ui \
+    buttonsWidgetsUi/deleteWidgetsUi/deletesomedrinkwidget.ui \
+    buttonsWidgetsUi/deleteWidgetsUi/deletesomesyrupwidget.ui \
+    coffeemachine.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

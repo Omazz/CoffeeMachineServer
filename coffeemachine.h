@@ -2,12 +2,12 @@
 #define COFFEEMACHINE_H
 
 #include "order.h"
-#include "newdrinkwidget.h"
-#include "newsyrupwidget.h"
-#include "changepricedrinkwidget.h"
-#include "changepricesyrupwidget.h"
-#include "deletesomedrinkwidget.h"
-#include "deletesomesyrupwidget.h"
+#include "buttonsWidgetsHeader/addWidgetsHeader/newdrinkwidget.h"
+#include "buttonsWidgetsHeader/addWidgetsHeader/newsyrupwidget.h"
+#include "buttonsWidgetsHeader/changeWidgetsHeader/changepricedrinkwidget.h"
+#include "buttonsWidgetsHeader/changeWidgetsHeader/changepricesyrupwidget.h"
+#include "buttonsWidgetsHeader/deleteWidgetsHeader/deletesomedrinkwidget.h"
+#include "buttonsWidgetsHeader/deleteWidgetsHeader/deletesomesyrupwidget.h"
 
 #include <QMainWindow>
 #include <QUdpSocket>

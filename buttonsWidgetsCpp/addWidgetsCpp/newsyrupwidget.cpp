@@ -1,4 +1,4 @@
-#include "newsyrupwidget.h"
+#include "buttonsWidgetsHeader/addWidgetsHeader/newsyrupwidget.h"
 #include "ui_newsyrupwidget.h"
 
 NewSyrupWidget::NewSyrupWidget(QWidget *parent) :

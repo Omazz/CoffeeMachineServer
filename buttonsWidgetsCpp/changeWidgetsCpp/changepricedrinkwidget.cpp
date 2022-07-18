@@ -1,4 +1,4 @@
-#include "changepricedrinkwidget.h"
+#include "buttonsWidgetsHeader/changeWidgetsHeader/changepricedrinkwidget.h"
 #include "ui_changepricedrinkwidget.h"
 
 ChangePriceDrinkWidget::ChangePriceDrinkWidget(QWidget *parent) :

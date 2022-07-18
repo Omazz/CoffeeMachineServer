@@ -1,4 +1,4 @@
-#include "deletesomesyrupwidget.h"
+#include "buttonsWidgetsHeader/deleteWidgetsHeader/deletesomesyrupwidget.h"
 #include "ui_deletesomesyrupwidget.h"
 
 DeleteSomeSyrupWidget::DeleteSomeSyrupWidget(QWidget *parent) :

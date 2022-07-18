@@ -1,4 +1,4 @@
-#include "changepricesyrupwidget.h"
+#include "buttonsWidgetsHeader/changeWidgetsHeader/changepricesyrupwidget.h"
 #include "ui_changepricesyrupwidget.h"
 
 ChangePriceSyrupWidget::ChangePriceSyrupWidget(QWidget *parent) :

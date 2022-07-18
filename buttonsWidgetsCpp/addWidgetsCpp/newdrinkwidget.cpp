@@ -1,4 +1,4 @@
-#include "newdrinkwidget.h"
+#include "buttonsWidgetsHeader/addWidgetsHeader/newdrinkwidget.h"
 #include "ui_newdrinkwidget.h"
 
 NewDrinkWidget::NewDrinkWidget(QWidget *parent) :

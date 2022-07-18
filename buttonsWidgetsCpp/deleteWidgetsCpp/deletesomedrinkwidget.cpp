@@ -1,4 +1,4 @@
-#include "deletesomedrinkwidget.h"
+#include "buttonsWidgetsHeader/deleteWidgetsHeader/deletesomedrinkwidget.h"
 #include "ui_deletesomedrinkwidget.h"
 
 DeleteSomeDrinkWidget::DeleteSomeDrinkWidget(QWidget *parent) :
