@@ -34,6 +34,8 @@ CoffeeMachine::CoffeeMachine(QWidget *parent)
 
     initPrices();
 
+
+
     newDrinkWidget = new NewDrinkWidget(this);
     newSyrupWidget = new NewSyrupWidget(this);
     changePriceDrinkWidget = new ChangePriceDrinkWidget(this);
