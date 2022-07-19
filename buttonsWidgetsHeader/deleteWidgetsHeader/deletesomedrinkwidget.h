@@ -22,7 +22,7 @@ private slots:
     void on_pushButton_clicked();
 
 private:
-    Ui::DeleteSomeDrinkWidget *ui;
+    Ui::DeleteSomeDrinkWidget* _ui;
 };
 
 #endif // DELETESOMEDRINKWIDGET_H

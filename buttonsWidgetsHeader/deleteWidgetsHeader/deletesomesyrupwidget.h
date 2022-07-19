@@ -21,7 +21,7 @@ signals:
 private slots:
     void on_pushButton_clicked();
 private:
-    Ui::DeleteSomeSyrupWidget *ui;
+    Ui::DeleteSomeSyrupWidget* _ui;
 };
 
 #endif // DELETESOMESYRUPWIDGET_H

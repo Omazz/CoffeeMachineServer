@@ -3,27 +3,27 @@
 
 NewDrinkWidget::NewDrinkWidget(QWidget *parent) :
     QDialog(parent),
-    ui(new Ui::NewDrinkWidget)
+    _ui(new Ui::NewDrinkWidget)
 {
-    ui->setupUi(this);
+    _ui->setupUi(this);
     this->setFixedSize(this->width(), this->height());
 }
 
 NewDrinkWidget::~NewDrinkWidget()
 {
-    delete ui;
+    delete _ui;
 }
 
 void NewDrinkWidget::on_sendToDatabaseButton_clicked()
 {
-    QString drink = ui->drinkLine->text();
-    QString price = ui->priceLine->text();
-    QString number = ui->numberLine->text();
+    QString drink = _ui->drinkLine->text();
+    QString price = _ui->priceLine->text();
+    QString number = _ui->numberLine->text();
     emit newDrinkSignal(drink, price, number);
 
-    ui->drinkLine->clear();
-    ui->priceLine->clear();
-    ui->numberLine->clear();
+    _ui->drinkLine->clear();
+    _ui->priceLine->clear();
+    _ui->numberLine->clear();
     this->close();
 }
 

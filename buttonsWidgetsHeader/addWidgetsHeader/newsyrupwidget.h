@@ -22,7 +22,7 @@ private slots:
     void on_sendToDatabaseButton_clicked();
 
 private:
-    Ui::NewSyrupWidget *ui;
+    Ui::NewSyrupWidget* _ui;
 };
 
 #endif // NEWSYRUPWIDGET_H

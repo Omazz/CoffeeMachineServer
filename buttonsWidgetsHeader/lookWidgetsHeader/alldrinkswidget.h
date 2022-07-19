@@ -25,8 +25,8 @@ private slots:
     void on_updateButton_clicked();
 
 private:
-    QTableWidget* table;
-    Ui::AllDrinksWidget *ui;
+    QTableWidget* _table;
+    Ui::AllDrinksWidget* _ui;
 };
 
 #endif // ALLDRINKSWIDGET_H

@@ -3,21 +3,23 @@
 
 DeleteSomeDrinkWidget::DeleteSomeDrinkWidget(QWidget *parent) :
     QDialog(parent),
-    ui(new Ui::DeleteSomeDrinkWidget)
+    _ui(new Ui::DeleteSomeDrinkWidget)
 {
-    ui->setupUi(this);
+    _ui->setupUi(this);
+    this->setFixedSize(this->width(), this->height());
+
 }
 
 DeleteSomeDrinkWidget::~DeleteSomeDrinkWidget()
 {
-    delete ui;
+    delete _ui;
 }
 
 void DeleteSomeDrinkWidget::on_pushButton_clicked()
 {
-    QString drink = ui->drinkLine->text();
+    QString drink = _ui->drinkLine->text();
     emit deleteSomeDrinkSignal(drink);
     this->close();
-    ui->drinkLine->clear();
+    _ui->drinkLine->clear();
 }
 

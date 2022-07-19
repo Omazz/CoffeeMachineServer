@@ -3,23 +3,25 @@
 
 ChangePriceSyrupWidget::ChangePriceSyrupWidget(QWidget *parent) :
     QDialog(parent),
-    ui(new Ui::ChangePriceSyrupWidget)
+    _ui(new Ui::ChangePriceSyrupWidget)
 {
-    ui->setupUi(this);
+    _ui->setupUi(this);
+    this->setFixedSize(this->width(), this->height());
+
 }
 
 ChangePriceSyrupWidget::~ChangePriceSyrupWidget()
 {
-    delete ui;
+    delete _ui;
 }
 
 void ChangePriceSyrupWidget::on_pushButton_clicked()
 {
-    QString syrup = ui->syrupLine->text();
-    QString price = ui->priceLine->text();
+    QString syrup = _ui->syrupLine->text();
+    QString price = _ui->priceLine->text();
     emit changePriceSyrupSignal(syrup, price);
     this->close();
-    ui->syrupLine->clear();
-    ui->priceLine->clear();
+    _ui->syrupLine->clear();
+    _ui->priceLine->clear();
 }
 

@@ -3,21 +3,23 @@
 
 DeleteSomeSyrupWidget::DeleteSomeSyrupWidget(QWidget *parent) :
     QDialog(parent),
-    ui(new Ui::DeleteSomeSyrupWidget)
+    _ui(new Ui::DeleteSomeSyrupWidget)
 {
-    ui->setupUi(this);
+    _ui->setupUi(this);
+    this->setFixedSize(this->width(), this->height());
+
 }
 
 DeleteSomeSyrupWidget::~DeleteSomeSyrupWidget()
 {
-    delete ui;
+    delete _ui;
 }
 
 void DeleteSomeSyrupWidget::on_pushButton_clicked()
 {
-    QString syrup = ui->syrupLine->text();
+    QString syrup = _ui->syrupLine->text();
     emit deleteSomeSyrupSignal(syrup);
     this->close();
-    ui->syrupLine->clear();
+    _ui->syrupLine->clear();
 }
 

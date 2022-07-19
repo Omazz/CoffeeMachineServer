@@ -22,7 +22,7 @@ signals:
     void newDrinkSignal(QString drink, QString price, QString number);
 
 private:
-    Ui::NewDrinkWidget *ui;
+    Ui::NewDrinkWidget* _ui;
 };
 
 #endif // NEWDRINKWIDGET_H

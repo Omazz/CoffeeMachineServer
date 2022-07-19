@@ -3,31 +3,32 @@
 
 AllSyrupsWidget::AllSyrupsWidget(QWidget *parent) :
     QDialog(parent),
-    ui(new Ui::AllSyrupsWidget)
+    _ui(new Ui::AllSyrupsWidget)
 {
-    ui->setupUi(this);
-    table = new QTableWidget(this);
-    ui->verticalLayout->insertWidget(0, table);
+    _ui->setupUi(this);
+    this->setFixedSize(this->width(), this->height());
+    _table = new QTableWidget(this);
+    _ui->verticalLayout->insertWidget(0, _table);
 }
 
 void AllSyrupsWidget::updateTable(QVector<Syrup> syrups) {
-    table->clear();
-    table->setColumnCount(2);
-    table->setRowCount(syrups.size());
+    _table->clear();
+    _table->setColumnCount(2);
+    _table->setRowCount(syrups.size());
     QStringList headers = {"Syrup", "Price"};
-    table->setHorizontalHeaderLabels(headers);
+    _table->setHorizontalHeaderLabels(headers);
     Syrup currentSyrup;
     for(uint counter = 0; counter < syrups.size(); ++counter) {
         currentSyrup = syrups[counter];
-        table->setItem(counter, 0, new QTableWidgetItem(currentSyrup.getName()));
-        table->setItem(counter, 1, new QTableWidgetItem(QString::number(currentSyrup.getPrice())));
+        _table->setItem(counter, 0, new QTableWidgetItem(currentSyrup.getName()));
+        _table->setItem(counter, 1, new QTableWidgetItem(QString::number(currentSyrup.getPrice())));
     }
 }
 
 
 AllSyrupsWidget::~AllSyrupsWidget()
 {
-    delete ui;
+    delete _ui;
 }
 
 void AllSyrupsWidget::on_updateButton_clicked()

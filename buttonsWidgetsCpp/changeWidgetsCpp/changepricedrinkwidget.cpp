@@ -3,23 +3,25 @@
 
 ChangePriceDrinkWidget::ChangePriceDrinkWidget(QWidget *parent) :
     QDialog(parent),
-    ui(new Ui::ChangePriceDrinkWidget)
+    _ui(new Ui::ChangePriceDrinkWidget)
 {
-    ui->setupUi(this);
+    _ui->setupUi(this);
+    this->setFixedSize(this->width(), this->height());
+
 }
 
 ChangePriceDrinkWidget::~ChangePriceDrinkWidget()
 {
-    delete ui;
+    delete _ui;
 }
 
 void ChangePriceDrinkWidget::on_pushButton_clicked()
 {
-    QString drink = ui->drinkLine->text();
-    QString price = ui->priceLine->text();
+    QString drink = _ui->drinkLine->text();
+    QString price = _ui->priceLine->text();
     emit changePriceDrinkSignal(drink, price);
     this->close();
-    ui->drinkLine->clear();
-    ui->priceLine->clear();
+    _ui->drinkLine->clear();
+    _ui->priceLine->clear();
 }
 

@@ -22,7 +22,7 @@ private slots:
     void on_pushButton_clicked();
 
 private:
-    Ui::ChangePriceDrinkWidget *ui;
+    Ui::ChangePriceDrinkWidget* _ui;
 };
 
 #endif // CHANGEPRICEDRINKWIDGET_H

@@ -3,24 +3,24 @@
 
 NewSyrupWidget::NewSyrupWidget(QWidget *parent) :
     QDialog(parent),
-    ui(new Ui::NewSyrupWidget)
+    _ui(new Ui::NewSyrupWidget)
 {
-    ui->setupUi(this);
+    _ui->setupUi(this);
     this->setFixedSize(this->width(), this->height());
 }
 
 NewSyrupWidget::~NewSyrupWidget()
 {
-    delete ui;
+    delete _ui;
 }
 
 void NewSyrupWidget::on_sendToDatabaseButton_clicked()
 {
-    QString syrup = ui->syrupLine->text();
-    QString price = ui->priceLine->text();
+    QString syrup = _ui->syrupLine->text();
+    QString price = _ui->priceLine->text();
     emit newSyrupSignal(syrup, price);
-    ui->syrupLine->clear();
-    ui->priceLine->clear();
+    _ui->syrupLine->clear();
+    _ui->priceLine->clear();
     this->close();
 }
 

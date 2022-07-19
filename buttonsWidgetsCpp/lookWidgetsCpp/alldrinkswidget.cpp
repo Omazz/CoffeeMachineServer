@@ -3,31 +3,32 @@
 
 AllDrinksWidget::AllDrinksWidget(QWidget *parent) :
     QDialog(parent),
-    ui(new Ui::AllDrinksWidget)
+    _ui(new Ui::AllDrinksWidget)
 {
-    ui->setupUi(this);
-    table = new QTableWidget(this);
-    ui->verticalLayout->insertWidget(0, table);
+    _ui->setupUi(this);
+    this->setFixedSize(this->width(), this->height());
+    _table = new QTableWidget(this);
+    _ui->verticalLayout->insertWidget(0, _table);
 }
 
 void AllDrinksWidget::updateTable(QVector<Drink> drinks) {
-    table->clear();
-    table->setColumnCount(3);
-    table->setRowCount(drinks.size());
+    _table->clear();
+    _table->setColumnCount(3);
+    _table->setRowCount(drinks.size());
     QStringList headers = {"Drink", "Price", "Number"};
-    table->setHorizontalHeaderLabels(headers);
+    _table->setHorizontalHeaderLabels(headers);
     Drink currentDrink;
     for(uint counter = 0; counter < drinks.size(); ++counter) {
         currentDrink = drinks[counter];
-        table->setItem(counter, 0, new QTableWidgetItem(currentDrink.getName()));
-        table->setItem(counter, 1, new QTableWidgetItem(QString::number(currentDrink.getPrice())));
-        table->setItem(counter, 2, new QTableWidgetItem(QString::number(currentDrink.getNumber())));
+        _table->setItem(counter, 0, new QTableWidgetItem(currentDrink.getName()));
+        _table->setItem(counter, 1, new QTableWidgetItem(QString::number(currentDrink.getPrice())));
+        _table->setItem(counter, 2, new QTableWidgetItem(QString::number(currentDrink.getNumber())));
     }
 }
 
 AllDrinksWidget::~AllDrinksWidget()
 {
-    delete ui;
+    delete _ui;
 }
 
 void AllDrinksWidget::on_updateButton_clicked()

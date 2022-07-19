@@ -25,8 +25,8 @@ private slots:
     void on_updateButton_clicked();
 
 private:
-    QTableWidget* table;
-    Ui::AllSyrupsWidget* ui;
+    QTableWidget* _table;
+    Ui::AllSyrupsWidget* _ui;
 };
 
 #endif // ALLSYRUPSWIDGET_H
