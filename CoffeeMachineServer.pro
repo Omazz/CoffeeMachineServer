@@ -17,9 +17,11 @@ SOURCES += \
     buttonsWidgetsCpp/deleteWidgetsCpp/deletesomesyrupwidget.cpp \
     buttonsWidgetsCpp/lookWidgetsCpp/alldrinkswidget.cpp \
     buttonsWidgetsCpp/lookWidgetsCpp/allsyrupswidget.cpp \
+    drink.cpp \
     main.cpp \
     coffeemachine.cpp \
-    order.cpp
+    order.cpp \
+    syrup.cpp
 
 HEADERS += \
     buttonsWidgetsHeader/addWidgetsHeader/newdrinkwidget.h \
@@ -31,7 +33,9 @@ HEADERS += \
     buttonsWidgetsHeader/lookWidgetsHeader/alldrinkswidget.h \
     buttonsWidgetsHeader/lookWidgetsHeader/allsyrupswidget.h \
     coffeemachine.h \
-    order.h
+    drink.h \
+    order.h \
+    syrup.h
 
 FORMS += \
     buttonsWidgetsUi/addWidgetsUi/newdrinkwidget.ui \
