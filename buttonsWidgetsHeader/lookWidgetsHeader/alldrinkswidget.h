@@ -1,6 +1,7 @@
 #ifndef ALLDRINKSWIDGET_H
 #define ALLDRINKSWIDGET_H
 
+#include "drink.h"
 #include <QTableWidget>
 #include <QDialog>
 
@@ -14,7 +15,7 @@ class AllDrinksWidget : public QDialog
 
 public:
     explicit AllDrinksWidget(QWidget *parent = nullptr);
-    void updateTable(QMap<QString,uint> drinks);
+    void updateTable(QVector<Drink> drinks);
     ~AllDrinksWidget();
 
 signals:

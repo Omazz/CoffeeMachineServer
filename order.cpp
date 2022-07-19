@@ -4,7 +4,7 @@ Order::Order() {
 
 }
 
-Order::Order(QString drink, bool sugarIsNeeded, bool milkIsNeeded, bool cinnamonIsNeeded,  QString syrup)
+Order::Order(Drink drink, bool sugarIsNeeded, bool milkIsNeeded, bool cinnamonIsNeeded,  Syrup syrup)
 {
     this->drink = drink;
     this->sugarIsNeeded = sugarIsNeeded;
@@ -13,7 +13,7 @@ Order::Order(QString drink, bool sugarIsNeeded, bool milkIsNeeded, bool cinnamon
     this->syrup = syrup;
 }
 
-void Order::setOrder(QString drink, bool sugarIsNeeded, bool milkIsNeeded, bool cinnamonIsNeeded,  QString syrup)
+void Order::setOrder(Drink drink, bool sugarIsNeeded, bool milkIsNeeded, bool cinnamonIsNeeded,  Syrup syrup)
 {
     this->drink = drink;
     this->sugarIsNeeded = sugarIsNeeded;
@@ -22,12 +22,12 @@ void Order::setOrder(QString drink, bool sugarIsNeeded, bool milkIsNeeded, bool 
     this->syrup = syrup;
 }
 
-QString Order:: getDrink()
+Drink Order:: getDrink()
 {
     return drink;
 }
 
-QString Order:: getSyrup()
+Syrup Order:: getSyrup()
 {
     return syrup;
 }

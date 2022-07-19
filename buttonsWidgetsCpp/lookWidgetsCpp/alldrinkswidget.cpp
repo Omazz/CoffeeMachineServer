@@ -10,20 +10,18 @@ AllDrinksWidget::AllDrinksWidget(QWidget *parent) :
     ui->verticalLayout->insertWidget(0, table);
 }
 
-void AllDrinksWidget::updateTable(QMap<QString,uint> drinks) {
+void AllDrinksWidget::updateTable(QVector<Drink> drinks) {
     table->clear();
-    table->setColumnCount(2);
+    table->setColumnCount(3);
     table->setRowCount(drinks.size());
-    QStringList headers = {"Drink", "Price"};
+    QStringList headers = {"Drink", "Price", "Number"};
     table->setHorizontalHeaderLabels(headers);
-    QTableWidgetItem* item;
-    uint counter = 0;
-    for(auto name: drinks.keys()) {
-        item = new QTableWidgetItem(name);
-        table->setItem(counter, 0, item);
-        item = new QTableWidgetItem(QString::number(drinks[name]));
-        table->setItem(counter, 1, item);
-        ++counter;
+    Drink currentDrink;
+    for(uint counter = 0; counter < drinks.size(); ++counter) {
+        currentDrink = drinks[counter];
+        table->setItem(counter, 0, new QTableWidgetItem(currentDrink.getName()));
+        table->setItem(counter, 1, new QTableWidgetItem(QString::number(currentDrink.getPrice())));
+        table->setItem(counter, 2, new QTableWidgetItem(QString::number(currentDrink.getNumber())));
     }
 }
 

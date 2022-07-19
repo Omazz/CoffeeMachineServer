@@ -85,20 +85,22 @@ private slots:
     void on_allSyrupsButton_clicked();
 
 private:
-    void initPrices();
+    void initializationDrinksAndSyrups();
     quint16 calculatePriceOrder();
     void writeDatagram(QString data);
     bool haveInStock();
     void updateOrdersLogs(bool isCorrect);
     void updateDrinks();
     void updateSyrups();
+    Drink findDrink(QString nameDrink);
+    Syrup findSyrup(QString nameSyrup);
 
     Ui::CoffeeMachine *ui;
     Order currentOrder;
 
     QSqlDatabase dataBase;
-    QMap<QString, uint> pricesOfDrinks;
-    QMap<QString, uint> pricesOfSyrups;
+    QVector<Drink> drinks;
+    QVector<Syrup> syrups;
 
     NewDrinkWidget* newDrinkWidget;
     NewSyrupWidget* newSyrupWidget;

@@ -1,6 +1,7 @@
 #ifndef ALLSYRUPSWIDGET_H
 #define ALLSYRUPSWIDGET_H
 
+#include "syrup.h"
 #include <QTableWidget>
 #include <QDialog>
 
@@ -14,7 +15,7 @@ class AllSyrupsWidget : public QDialog
 
 public:
     explicit AllSyrupsWidget(QWidget *parent = nullptr);
-    void updateTable(QMap<QString, uint> syrups);
+    void updateTable(QVector<Syrup> syrups);
     ~AllSyrupsWidget();
 
 signals:
@@ -25,7 +26,7 @@ private slots:
 
 private:
     QTableWidget* table;
-    Ui::AllSyrupsWidget *ui;
+    Ui::AllSyrupsWidget* ui;
 };
 
 #endif // ALLSYRUPSWIDGET_H

@@ -10,20 +10,17 @@ AllSyrupsWidget::AllSyrupsWidget(QWidget *parent) :
     ui->verticalLayout->insertWidget(0, table);
 }
 
-void AllSyrupsWidget::updateTable(QMap<QString, uint> syrups) {
+void AllSyrupsWidget::updateTable(QVector<Syrup> syrups) {
     table->clear();
     table->setColumnCount(2);
     table->setRowCount(syrups.size());
     QStringList headers = {"Syrup", "Price"};
     table->setHorizontalHeaderLabels(headers);
-    QTableWidgetItem* item;
-    uint counter = 0;
-    for(auto syrup: syrups.keys()) {
-        item = new QTableWidgetItem(syrup);
-        table->setItem(counter, 0, item);
-        item = new QTableWidgetItem(QString::number(syrups[syrup]));
-        table->setItem(counter, 1, item);
-        counter++;
+    Syrup currentSyrup;
+    for(uint counter = 0; counter < syrups.size(); ++counter) {
+        currentSyrup = syrups[counter];
+        table->setItem(counter, 0, new QTableWidgetItem(currentSyrup.getName()));
+        table->setItem(counter, 1, new QTableWidgetItem(QString::number(currentSyrup.getPrice())));
     }
 }
 
