@@ -6,6 +6,7 @@ NewSyrupWidget::NewSyrupWidget(QWidget *parent) :
     ui(new Ui::NewSyrupWidget)
 {
     ui->setupUi(this);
+    this->setFixedSize(this->width(), this->height());
 }
 
 NewSyrupWidget::~NewSyrupWidget()
