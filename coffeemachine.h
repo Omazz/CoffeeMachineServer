@@ -2,6 +2,8 @@
 #define COFFEEMACHINE_H
 
 #include "order.h"
+#include "drink.h"
+#include "syrup.h"
 #include "buttonsWidgetsHeader/addWidgetsHeader/newdrinkwidget.h"
 #include "buttonsWidgetsHeader/addWidgetsHeader/newsyrupwidget.h"
 #include "buttonsWidgetsHeader/changeWidgetsHeader/changepricedrinkwidget.h"
