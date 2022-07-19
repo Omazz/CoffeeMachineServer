@@ -8,6 +8,8 @@
 #include "buttonsWidgetsHeader/changeWidgetsHeader/changepricesyrupwidget.h"
 #include "buttonsWidgetsHeader/deleteWidgetsHeader/deletesomedrinkwidget.h"
 #include "buttonsWidgetsHeader/deleteWidgetsHeader/deletesomesyrupwidget.h"
+#include "buttonsWidgetsHeader/lookWidgetsHeader/alldrinkswidget.h"
+#include "buttonsWidgetsHeader/lookWidgetsHeader/allsyrupswidget.h"
 
 #include <QMainWindow>
 #include <QUdpSocket>
@@ -76,6 +78,10 @@ private slots:
     void on_deleteSomeDrinkButton_clicked();
     void on_deleteSomeSyrupButton_clicked();
 
+    void on_allDrinksButton_clicked();
+
+    void on_allSyrupsButton_clicked();
+
 private:
     void initPrices();
     quint16 calculatePriceOrder();
@@ -96,6 +102,8 @@ private:
     ChangePriceSyrupWidget* changePriceSyrupWidget;
     DeleteSomeDrinkWidget* deleteSomeDrinkWidget;
     DeleteSomeSyrupWidget* deleteSomeSyrupWidget;
+    AllDrinksWidget* allDrinksWidget;
+    AllSyrupsWidget* allSyrupsWidget;
 
     QUdpSocket* socket;
 };

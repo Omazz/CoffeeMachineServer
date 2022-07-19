@@ -286,3 +286,15 @@ void CoffeeMachine::on_deleteSomeSyrupButton_clicked()
     deleteSomeSyrupWidget->show();
 }
 
+
+void CoffeeMachine::on_allDrinksButton_clicked()
+{
+    allDrinksWidget->setModal(true);
+}
+
+
+void CoffeeMachine::on_allSyrupsButton_clicked()
+{
+    allSyrupsWidget->setModal(true);
+}
+

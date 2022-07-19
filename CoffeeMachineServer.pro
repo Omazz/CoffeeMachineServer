@@ -15,6 +15,8 @@ SOURCES += \
     buttonsWidgetsCpp/changeWidgetsCpp/changepricesyrupwidget.cpp \
     buttonsWidgetsCpp/deleteWidgetsCpp/deletesomedrinkwidget.cpp \
     buttonsWidgetsCpp/deleteWidgetsCpp/deletesomesyrupwidget.cpp \
+    buttonsWidgetsCpp/lookWidgetsCpp/alldrinkswidget.cpp \
+    buttonsWidgetsCpp/lookWidgetsCpp/allsyrupswidget.cpp \
     main.cpp \
     coffeemachine.cpp \
     order.cpp
@@ -26,6 +28,8 @@ HEADERS += \
     buttonsWidgetsHeader/changeWidgetsHeader/changepricesyrupwidget.h \
     buttonsWidgetsHeader/deleteWidgetsHeader/deletesomedrinkwidget.h \
     buttonsWidgetsHeader/deleteWidgetsHeader/deletesomesyrupwidget.h \
+    buttonsWidgetsHeader/lookWidgetsHeader/alldrinkswidget.h \
+    buttonsWidgetsHeader/lookWidgetsHeader/allsyrupswidget.h \
     coffeemachine.h \
     order.h
 
@@ -36,6 +40,8 @@ FORMS += \
     buttonsWidgetsUi/changeWidgetsUi/changepricesyrupwidget.ui \
     buttonsWidgetsUi/deleteWidgetsUi/deletesomedrinkwidget.ui \
     buttonsWidgetsUi/deleteWidgetsUi/deletesomesyrupwidget.ui \
+    buttonsWidgetsUi/lookWidgetsUi/alldrinkswidget.ui \
+    buttonsWidgetsUi/lookWidgetsUi/allsyrupswidget.ui \
     coffeemachine.ui
 
 # Default rules for deployment.
