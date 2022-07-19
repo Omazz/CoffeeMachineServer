@@ -6,22 +6,22 @@ Syrup::Syrup()
 }
 
 Syrup::Syrup(QString name, uint price) {
-    this->name = name;
-    this->price = price;
+    _name = name;
+    _price = price;
 }
 
 void Syrup::setName(QString name) {
-    this->name = name;
+    _name = name;
 }
 
 void Syrup::setPrice(uint price) {
-    this->price = price;
+    _price = price;
 }
 
 QString Syrup::getName() {
-    return name;
+    return _name;
 }
 
 uint Syrup::getPrice() {
-    return price;
+    return _price;
 }

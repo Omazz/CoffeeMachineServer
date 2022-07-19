@@ -6,31 +6,31 @@ Drink::Drink()
 }
 
 Drink::Drink(QString name, uint price, uint number) {
-    this->name = name;
-    this->price = price;
-    this->number = number;
+    _name = name;
+    _price = price;
+    _number = number;
 }
 
 void Drink::setName(QString name) {
-    this->name = name;
+    _name = name;
 }
 
 void Drink::setNumber(uint number) {
-    this->number = number;
+    _number = number;
 }
 
 void Drink::setPrice(uint price) {
-    this->price = price;
+    _price = price;
 }
 
 QString Drink::getName() {
-    return name;
+    return _name;
 }
 
 uint Drink::getNumber() {
-    return number;
+    return _number;
 }
 
 uint Drink::getPrice() {
-    return price;
+    return _price;
 }

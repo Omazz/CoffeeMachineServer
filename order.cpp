@@ -6,43 +6,43 @@ Order::Order() {
 
 Order::Order(Drink drink, bool sugarIsNeeded, bool milkIsNeeded, bool cinnamonIsNeeded,  Syrup syrup)
 {
-    this->drink = drink;
-    this->sugarIsNeeded = sugarIsNeeded;
-    this->milkIsNeeded = milkIsNeeded;
-    this->cinnamonIsNeeded = cinnamonIsNeeded;
-    this->syrup = syrup;
+    _drink = drink;
+    _sugarIsNeeded = sugarIsNeeded;
+    _milkIsNeeded = milkIsNeeded;
+    _cinnamonIsNeeded = cinnamonIsNeeded;
+    _syrup = syrup;
 }
 
 void Order::setOrder(Drink drink, bool sugarIsNeeded, bool milkIsNeeded, bool cinnamonIsNeeded,  Syrup syrup)
 {
-    this->drink = drink;
-    this->sugarIsNeeded = sugarIsNeeded;
-    this->milkIsNeeded = milkIsNeeded;
-    this->cinnamonIsNeeded = cinnamonIsNeeded;
-    this->syrup = syrup;
+    _drink = drink;
+    _sugarIsNeeded = sugarIsNeeded;
+    _milkIsNeeded = milkIsNeeded;
+    _cinnamonIsNeeded = cinnamonIsNeeded;
+    _syrup = syrup;
 }
 
 Drink Order:: getDrink()
 {
-    return drink;
+    return _drink;
 }
 
 Syrup Order:: getSyrup()
 {
-    return syrup;
+    return _syrup;
 }
 
 bool Order:: isNeededSugar()
 {
-    return sugarIsNeeded;
+    return _sugarIsNeeded;
 }
 
 bool Order:: isNeededMilk()
 {
-    return milkIsNeeded;
+    return _milkIsNeeded;
 }
 
 bool Order:: isNeededCinnamon()
 {
-    return cinnamonIsNeeded;
+    return _cinnamonIsNeeded;
 }

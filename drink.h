@@ -16,9 +16,9 @@ public:
     uint getNumber();
 
 private:
-    QString name;
-    uint price;
-    uint number;
+    QString _name;
+    uint _price;
+    uint _number;
 };
 
 #endif // DRINK_H

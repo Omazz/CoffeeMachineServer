@@ -14,8 +14,8 @@ public:
     uint getPrice();
 
 private:
-    QString name;
-    uint price;
+    QString _name;
+    uint _price;
 };
 
 #endif // SYRUP_H

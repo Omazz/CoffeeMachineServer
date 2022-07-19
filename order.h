@@ -18,11 +18,11 @@ public:
     bool isNeededMilk();
     bool isNeededCinnamon();
 private:
-    Drink drink;
-    bool sugarIsNeeded;
-    bool milkIsNeeded;
-    bool cinnamonIsNeeded;
-    Syrup syrup;
+    Drink _drink;
+    bool _sugarIsNeeded;
+    bool _milkIsNeeded;
+    bool _cinnamonIsNeeded;
+    Syrup _syrup;
 };
 
 #endif // ORDER_H
