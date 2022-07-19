@@ -88,6 +88,8 @@ private:
     void writeDatagram(QString data);
     bool haveInStock();
     void updateOrdersLogs(bool isCorrect);
+    void updateDrinks();
+    void updateSyrups();
 
     Ui::CoffeeMachine *ui;
     Order currentOrder;

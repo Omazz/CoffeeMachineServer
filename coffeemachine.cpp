@@ -34,14 +34,14 @@ CoffeeMachine::CoffeeMachine(QWidget *parent)
 
     initPrices();
 
-
-
     newDrinkWidget = new NewDrinkWidget(this);
     newSyrupWidget = new NewSyrupWidget(this);
     changePriceDrinkWidget = new ChangePriceDrinkWidget(this);
     changePriceSyrupWidget = new ChangePriceSyrupWidget(this);
     deleteSomeDrinkWidget = new DeleteSomeDrinkWidget(this);
     deleteSomeSyrupWidget = new DeleteSomeSyrupWidget(this);
+    allDrinksWidget = new AllDrinksWidget(this);
+    allSyrupsWidget = new AllSyrupsWidget(this);
 
     connect(newDrinkWidget, &NewDrinkWidget::newDrinkSignal, this, &CoffeeMachine::addNewDrink);
     connect(newSyrupWidget, &NewSyrupWidget::newSyrupSignal, this, &CoffeeMachine::addNewSyrup);
@@ -49,6 +49,7 @@ CoffeeMachine::CoffeeMachine(QWidget *parent)
     connect(changePriceSyrupWidget, &ChangePriceSyrupWidget::changePriceSyrupSignal, this, &CoffeeMachine::changePriceSyrup);
     connect(deleteSomeDrinkWidget, &DeleteSomeDrinkWidget::deleteSomeDrinkSignal, this, &CoffeeMachine::deleteSomeDrink);
     connect(deleteSomeSyrupWidget, &DeleteSomeSyrupWidget::deleteSomeSyrupSignal, this, &CoffeeMachine::deleteSomeSyrup);
+    //connect all...Widget
 }
 
 void CoffeeMachine:: initPrices()
@@ -163,6 +164,32 @@ void CoffeeMachine:: updateOrdersLogs(bool isCorrect) {
         query->bindValue(":correct", isCorrect);
         query->bindValue(":date", QDateTime::currentDateTime());
         query->exec();
+    }
+}
+
+void CoffeeMachine::updateDrinks() {
+    if(dataBase.open()) {
+        QSqlQuery* query = new QSqlQuery(dataBase);
+        QString command = "SELECT * FROM " + DATABASE_DRINKS_TABLE + ";";
+        query->prepare(command);
+        query->exec();
+        pricesOfDrinks.clear();
+        while(query->next()) {
+            pricesOfDrinks.insert(query->value(1).toString(), query->value(2).toInt());
+        }
+    }
+}
+
+void CoffeeMachine::updateSyrups() {
+    if(dataBase.open()) {
+        QSqlQuery* query = new QSqlQuery(dataBase);
+        QString command = "SELECT * FROM " + DATABASE_SYRUPS_TABLE + ";";
+        query->prepare(command);
+        query->exec();
+        pricesOfSyrups.clear();
+        while(query->next()) {
+            pricesOfSyrups.insert(query->value(1).toString(), query->value(2).toInt());
+        }
     }
 }
 
@@ -290,11 +317,13 @@ void CoffeeMachine::on_deleteSomeSyrupButton_clicked()
 void CoffeeMachine::on_allDrinksButton_clicked()
 {
     allDrinksWidget->setModal(true);
+    allDrinksWidget->show();
 }
 
 
 void CoffeeMachine::on_allSyrupsButton_clicked()
 {
     allSyrupsWidget->setModal(true);
+    allSyrupsWidget->show();
 }
 
