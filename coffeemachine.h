@@ -70,6 +70,8 @@ private slots:
     void changePriceSyrup(QString syrup, QString price);
     void deleteSomeDrink(QString drink);
     void deleteSomeSyrup(QString syrup);
+    void updateDrinksTable();
+    void updateSyrupsTable();
 
     void on_addNewDrinkButton_clicked();
     void on_addNewSyrupButton_clicked();
@@ -77,9 +79,7 @@ private slots:
     void on_changePriceSyrupsButton_clicked();
     void on_deleteSomeDrinkButton_clicked();
     void on_deleteSomeSyrupButton_clicked();
-
     void on_allDrinksButton_clicked();
-
     void on_allSyrupsButton_clicked();
 
 private:

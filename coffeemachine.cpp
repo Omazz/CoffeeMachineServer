@@ -49,7 +49,8 @@ CoffeeMachine::CoffeeMachine(QWidget *parent)
     connect(changePriceSyrupWidget, &ChangePriceSyrupWidget::changePriceSyrupSignal, this, &CoffeeMachine::changePriceSyrup);
     connect(deleteSomeDrinkWidget, &DeleteSomeDrinkWidget::deleteSomeDrinkSignal, this, &CoffeeMachine::deleteSomeDrink);
     connect(deleteSomeSyrupWidget, &DeleteSomeSyrupWidget::deleteSomeSyrupSignal, this, &CoffeeMachine::deleteSomeSyrup);
-    //connect all...Widget
+    connect(allDrinksWidget, &AllDrinksWidget::updateDrinksTableSignal, this, &CoffeeMachine::updateDrinksTable);
+    connect(allSyrupsWidget, &AllSyrupsWidget::updateSyrupsTableSignal, this, &CoffeeMachine::updateSyrupsTable);
 }
 
 void CoffeeMachine:: initPrices()
@@ -272,6 +273,16 @@ void CoffeeMachine::deleteSomeSyrup(QString syrup) {
     }
 }
 
+void CoffeeMachine::updateDrinksTable() {
+    updateDrinks();
+    allDrinksWidget->updateTable(pricesOfDrinks);
+}
+
+void CoffeeMachine::updateSyrupsTable() {
+    updateSyrups();
+    allSyrupsWidget->updateTable(pricesOfSyrups);
+}
+
 void CoffeeMachine::on_addNewDrinkButton_clicked()
 {
     newDrinkWidget->setModal(true);
@@ -317,6 +328,7 @@ void CoffeeMachine::on_deleteSomeSyrupButton_clicked()
 void CoffeeMachine::on_allDrinksButton_clicked()
 {
     allDrinksWidget->setModal(true);
+    allDrinksWidget->updateTable(pricesOfDrinks);
     allDrinksWidget->show();
 }
 
@@ -324,6 +336,7 @@ void CoffeeMachine::on_allDrinksButton_clicked()
 void CoffeeMachine::on_allSyrupsButton_clicked()
 {
     allSyrupsWidget->setModal(true);
+    allSyrupsWidget->updateTable(pricesOfSyrups);
     allSyrupsWidget->show();
 }
 
