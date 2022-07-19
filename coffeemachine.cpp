@@ -19,13 +19,14 @@ const QString CoffeeMachine:: DATABASE_ORDERS_TABLE = "\"ordersTable\"";
 
 CoffeeMachine::CoffeeMachine(QWidget *parent)
     : QMainWindow(parent)
-    , ui(new Ui::CoffeeMachine)
+    , _ui(new Ui::CoffeeMachine)
 {
-    ui->setupUi(this);
+    _ui->setupUi(this);
 
-    socket = new QUdpSocket(this);
-    socket->bind(TO_LISTEN_IP, TO_LISTEN_PORT);
-    connect(socket, SIGNAL(readyRead()), this, SLOT(readDatagram()));
+    _socket = new QUdpSocket(this);
+    _socket->bind(TO_LISTEN_IP, TO_LISTEN_PORT);
+    connect(_socket, SIGNAL(readyRead()), this, SLOT(readDatagram()));
+
     _dataBase = QSqlDatabase::addDatabase(DATABASE_DRIVER); // driver
     _dataBase.setDatabaseName(DATABASE_NAME);
     _dataBase.setUserName(DATABASE_USERNAME);
@@ -34,23 +35,23 @@ CoffeeMachine::CoffeeMachine(QWidget *parent)
 
     initializationDrinksAndSyrups();
 
-    newDrinkWidget = new NewDrinkWidget(this);
-    newSyrupWidget = new NewSyrupWidget(this);
-    changePriceDrinkWidget = new ChangePriceDrinkWidget(this);
-    changePriceSyrupWidget = new ChangePriceSyrupWidget(this);
-    deleteSomeDrinkWidget = new DeleteSomeDrinkWidget(this);
-    deleteSomeSyrupWidget = new DeleteSomeSyrupWidget(this);
-    allDrinksWidget = new AllDrinksWidget(this);
-    allSyrupsWidget = new AllSyrupsWidget(this);
+    _newDrinkWidget = new NewDrinkWidget(this);
+    _newSyrupWidget = new NewSyrupWidget(this);
+    _changePriceDrinkWidget = new ChangePriceDrinkWidget(this);
+    _changePriceSyrupWidget = new ChangePriceSyrupWidget(this);
+    _deleteSomeDrinkWidget = new DeleteSomeDrinkWidget(this);
+    _deleteSomeSyrupWidget = new DeleteSomeSyrupWidget(this);
+    _allDrinksWidget = new AllDrinksWidget(this);
+    _allSyrupsWidget = new AllSyrupsWidget(this);
 
-    connect(newDrinkWidget, &NewDrinkWidget::newDrinkSignal, this, &CoffeeMachine::addNewDrink);
-    connect(newSyrupWidget, &NewSyrupWidget::newSyrupSignal, this, &CoffeeMachine::addNewSyrup);
-    connect(changePriceDrinkWidget, &ChangePriceDrinkWidget::changePriceDrinkSignal, this, &CoffeeMachine::changePriceDrink);
-    connect(changePriceSyrupWidget, &ChangePriceSyrupWidget::changePriceSyrupSignal, this, &CoffeeMachine::changePriceSyrup);
-    connect(deleteSomeDrinkWidget, &DeleteSomeDrinkWidget::deleteSomeDrinkSignal, this, &CoffeeMachine::deleteSomeDrink);
-    connect(deleteSomeSyrupWidget, &DeleteSomeSyrupWidget::deleteSomeSyrupSignal, this, &CoffeeMachine::deleteSomeSyrup);
-    connect(allDrinksWidget, &AllDrinksWidget::updateDrinksTableSignal, this, &CoffeeMachine::updateDrinksTable);
-    connect(allSyrupsWidget, &AllSyrupsWidget::updateSyrupsTableSignal, this, &CoffeeMachine::updateSyrupsTable);
+    connect(_newDrinkWidget, &NewDrinkWidget::newDrinkSignal, this, &CoffeeMachine::addNewDrink);
+    connect(_newSyrupWidget, &NewSyrupWidget::newSyrupSignal, this, &CoffeeMachine::addNewSyrup);
+    connect(_changePriceDrinkWidget, &ChangePriceDrinkWidget::changePriceDrinkSignal, this, &CoffeeMachine::changePriceDrink);
+    connect(_changePriceSyrupWidget, &ChangePriceSyrupWidget::changePriceSyrupSignal, this, &CoffeeMachine::changePriceSyrup);
+    connect(_deleteSomeDrinkWidget, &DeleteSomeDrinkWidget::deleteSomeDrinkSignal, this, &CoffeeMachine::deleteSomeDrink);
+    connect(_deleteSomeSyrupWidget, &DeleteSomeSyrupWidget::deleteSomeSyrupSignal, this, &CoffeeMachine::deleteSomeSyrup);
+    connect(_allDrinksWidget, &AllDrinksWidget::updateDrinksTableSignal, this, &CoffeeMachine::updateDrinksTable);
+    connect(_allSyrupsWidget, &AllSyrupsWidget::updateSyrupsTableSignal, this, &CoffeeMachine::updateSyrupsTable);
 }
 
 void CoffeeMachine:: initializationDrinksAndSyrups()
@@ -78,10 +79,10 @@ void CoffeeMachine:: readDatagram()
     QHostAddress sender;
     quint16 senderPort;
     QString data;
-    while (socket->hasPendingDatagrams()) {
+    while (_socket->hasPendingDatagrams()) {
         QByteArray datagram;
-        datagram.resize(socket->pendingDatagramSize());
-        socket->readDatagram(datagram.data(), datagram.size(), &sender, &senderPort);
+        datagram.resize(_socket->pendingDatagramSize());
+        _socket->readDatagram(datagram.data(), datagram.size(), &sender, &senderPort);
 
         data = datagram.data();
         QStringList stringList = data.split(";");
@@ -94,7 +95,7 @@ void CoffeeMachine:: readDatagram()
         Syrup syrup = findSyrup(stringList.at(5));
         _currentOrder.setOrder(drink, sugarIsNeeded, milkIsNeeded, cinnamonIsNeeded, syrup);
 
-        ui->lastRequestLabel->setText(data);
+        _ui->lastRequestLabel->setText(data);
         if(lastRequest == BUY_COMMAND_HEADER) {
             writeDatagram(lastRequest + ";" + (haveInStock() ? BUY_SUCCESS_COMMAND : BUY_FAILURE_COMMAND));
         } else if(lastRequest == CHECK_COMMAND_HEADER) {
@@ -116,7 +117,7 @@ quint16 CoffeeMachine:: calculatePriceOrder() {
 
 void CoffeeMachine:: writeDatagram(QString data)
 {
-    socket->writeDatagram(data.toUtf8(), TO_SEND_IP, TO_SEND_PORT);
+    _socket->writeDatagram(data.toUtf8(), TO_SEND_IP, TO_SEND_PORT);
 }
 
 bool CoffeeMachine:: haveInStock() {
@@ -128,7 +129,7 @@ bool CoffeeMachine:: haveInStock() {
         query->bindValue(":drink", _currentOrder.getDrink().getName());
         query->exec();
         query->next();
-        quint16 number = query->value(0).toInt();
+        uint number = query->value(0).toUInt();
         if(number > 1) {
             command = "UPDATE " + DATABASE_DRINKS_TABLE +
                     " SET " + DATABASE_AMOUNT_DRINK_FIELD + " = :number "+
@@ -196,7 +197,7 @@ void CoffeeMachine::updateSyrups() {
 
 CoffeeMachine::~CoffeeMachine()
 {
-    delete ui;
+    delete _ui;
 }
 
 void CoffeeMachine::addNewDrink(QString drink, QString price, QString number) {
@@ -275,12 +276,12 @@ void CoffeeMachine::deleteSomeSyrup(QString syrup) {
 
 void CoffeeMachine::updateDrinksTable() {
     updateDrinks();
-    allDrinksWidget->updateTable(_drinks);
+    _allDrinksWidget->updateTable(_drinks);
 }
 
 void CoffeeMachine::updateSyrupsTable() {
     updateSyrups();
-    allSyrupsWidget->updateTable(_syrups);
+    _allSyrupsWidget->updateTable(_syrups);
 }
 
 Drink CoffeeMachine::findDrink(QString nameDrink) {
@@ -303,58 +304,58 @@ Syrup CoffeeMachine::findSyrup(QString nameSyrup) {
 
 void CoffeeMachine::on_addNewDrinkButton_clicked()
 {
-    newDrinkWidget->setModal(true);
-    newDrinkWidget->show();
+    _newDrinkWidget->setModal(true);
+    _newDrinkWidget->show();
 }
 
 
 void CoffeeMachine::on_addNewSyrupButton_clicked()
 {
-    newSyrupWidget->setModal(true);
-    newSyrupWidget->show();
+    _newSyrupWidget->setModal(true);
+    _newSyrupWidget->show();
 }
 
 
 void CoffeeMachine::on_changePriceDrinksButton_clicked()
 {
-    changePriceDrinkWidget->setModal(true);
-    changePriceDrinkWidget->show();
+    _changePriceDrinkWidget->setModal(true);
+    _changePriceDrinkWidget->show();
 }
 
 
 void CoffeeMachine::on_changePriceSyrupsButton_clicked()
 {
-    changePriceSyrupWidget->setModal(true);
-    changePriceSyrupWidget->show();
+    _changePriceSyrupWidget->setModal(true);
+    _changePriceSyrupWidget->show();
 }
 
 
 void CoffeeMachine::on_deleteSomeDrinkButton_clicked()
 {
-    deleteSomeDrinkWidget->setModal(true);
-    deleteSomeDrinkWidget->show();
+    _deleteSomeDrinkWidget->setModal(true);
+    _deleteSomeDrinkWidget->show();
 }
 
 
 void CoffeeMachine::on_deleteSomeSyrupButton_clicked()
 {
-    deleteSomeSyrupWidget->setModal(true);
-    deleteSomeSyrupWidget->show();
+    _deleteSomeSyrupWidget->setModal(true);
+    _deleteSomeSyrupWidget->show();
 }
 
 
 void CoffeeMachine::on_allDrinksButton_clicked()
 {
-    allDrinksWidget->setModal(true);
-    allDrinksWidget->updateTable(_drinks);
-    allDrinksWidget->show();
+    _allDrinksWidget->setModal(true);
+    _allDrinksWidget->updateTable(_drinks);
+    _allDrinksWidget->show();
 }
 
 
 void CoffeeMachine::on_allSyrupsButton_clicked()
 {
-    allSyrupsWidget->setModal(true);
-    allSyrupsWidget->updateTable(_syrups);
-    allSyrupsWidget->show();
+    _allSyrupsWidget->setModal(true);
+    _allSyrupsWidget->updateTable(_syrups);
+    _allSyrupsWidget->show();
 }
 

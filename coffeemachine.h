@@ -95,22 +95,22 @@ private:
     Drink findDrink(QString nameDrink);
     Syrup findSyrup(QString nameSyrup);
 
-    Ui::CoffeeMachine* ui;
+    Ui::CoffeeMachine* _ui;
     Order _currentOrder;
 
     QSqlDatabase _dataBase;
     QVector<Drink> _drinks;
     QVector<Syrup> _syrups;
 
-    NewDrinkWidget* newDrinkWidget;
-    NewSyrupWidget* newSyrupWidget;
-    ChangePriceDrinkWidget* changePriceDrinkWidget;
-    ChangePriceSyrupWidget* changePriceSyrupWidget;
-    DeleteSomeDrinkWidget* deleteSomeDrinkWidget;
-    DeleteSomeSyrupWidget* deleteSomeSyrupWidget;
-    AllDrinksWidget* allDrinksWidget;
-    AllSyrupsWidget* allSyrupsWidget;
+    NewDrinkWidget* _newDrinkWidget;
+    NewSyrupWidget* _newSyrupWidget;
+    ChangePriceDrinkWidget* _changePriceDrinkWidget;
+    ChangePriceSyrupWidget* _changePriceSyrupWidget;
+    DeleteSomeDrinkWidget* _deleteSomeDrinkWidget;
+    DeleteSomeSyrupWidget* _deleteSomeSyrupWidget;
+    AllDrinksWidget* _allDrinksWidget;
+    AllSyrupsWidget* _allSyrupsWidget;
 
-    QUdpSocket* socket;
+    QUdpSocket* _socket;
 };
 #endif // COFFEEMACHINE_H
