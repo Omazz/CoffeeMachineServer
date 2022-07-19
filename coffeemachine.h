@@ -95,12 +95,12 @@ private:
     Drink findDrink(QString nameDrink);
     Syrup findSyrup(QString nameSyrup);
 
-    Ui::CoffeeMachine *ui;
-    Order currentOrder;
+    Ui::CoffeeMachine* ui;
+    Order _currentOrder;
 
-    QSqlDatabase dataBase;
-    QVector<Drink> drinks;
-    QVector<Syrup> syrups;
+    QSqlDatabase _dataBase;
+    QVector<Drink> _drinks;
+    QVector<Syrup> _syrups;
 
     NewDrinkWidget* newDrinkWidget;
     NewSyrupWidget* newSyrupWidget;
