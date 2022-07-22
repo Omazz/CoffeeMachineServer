@@ -284,7 +284,7 @@ void CoffeeMachine::updateSyrupsTable() {
     _allSyrupsWidget->updateTable(_syrups);
 }
 
-Drink CoffeeMachine::findDrink(QString nameDrink) {
+Drink CoffeeMachine::findDrink(const QString& nameDrink) {
     for(uint counter = 0; counter < _drinks.size(); ++counter) {
         if(_drinks[counter].getName() == nameDrink) {
             return _drinks[counter];
@@ -293,7 +293,7 @@ Drink CoffeeMachine::findDrink(QString nameDrink) {
     throw new QException;
 }
 
-Syrup CoffeeMachine::findSyrup(QString nameSyrup) {
+Syrup CoffeeMachine::findSyrup(const QString& nameSyrup) {
     for(uint counter = 0; counter < _syrups.size(); ++counter) {
         if(_syrups[counter].getName() == nameSyrup) {
             return _syrups[counter];

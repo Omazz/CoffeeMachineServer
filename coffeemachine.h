@@ -92,8 +92,8 @@ private:
     void updateOrdersLogs(bool isCorrect);
     void updateDrinks();
     void updateSyrups();
-    Drink findDrink(QString nameDrink);
-    Syrup findSyrup(QString nameSyrup);
+    Drink findDrink(const QString& nameDrink);
+    Syrup findSyrup(const QString& nameSyrup);
 
     Ui::CoffeeMachine* _ui;
     Order _currentOrder;
